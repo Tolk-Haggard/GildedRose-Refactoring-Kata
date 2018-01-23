@@ -7,7 +7,7 @@
     "precompile": "rimraf app/**/*.js test/**/*.js",
     "compile": "tsc",
     "pretest": "rimraf app/**/*.js test/**/*.js",
-    "test": "nyc mocha"
+    "test": "run-when-changed --watch '**/*.ts' --exec 'clear && nyc mocha'"
   },
   "author": "paucls",
   "homepage": "https://github.com/paucls/typescript-mocha-kata-seed",
@@ -21,6 +21,7 @@
     "mocha": "~3.2.0",
     "nyc": "~11.0.3",
     "rimraf": "~2.5.2",
+    "run-when-changed": "^2.0.3",
     "ts-node": "~3.1.0",
     "typescript": "~2.2.0"
   },
@@ -41,4 +42,3 @@
     ]
   }
 }
-
