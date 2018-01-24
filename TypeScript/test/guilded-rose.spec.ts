@@ -1,5 +1,19 @@
 import { expect } from 'chai';
-import { Item, GildedRose } from '../app/gilded-rose';
+import { Item, GildedRose, production } from '../app/gilded-rose';
+
+describe('Run It', function() {
+    console.log('BEFORE');
+    production.items.forEach(item => {
+        console.log(JSON.stringify(item));
+    });
+
+    production.updateQuality();
+
+    console.log('\n\nAFTER');
+    production.items.forEach(item => {
+        console.log(JSON.stringify(item));
+    });
+});
 
 describe('Gilded Rose', function() {
 
