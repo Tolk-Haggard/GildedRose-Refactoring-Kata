@@ -12,9 +12,13 @@ buildscript {
 
 plugins {
     id "org.jetbrains.kotlin.jvm" version "1.2.21"
+    id "de.dplatz.clear" version "0.3"
 }
 
 apply plugin: 'kotlin'
+apply plugin: 'application'
+
+mainClassName = "com.gildedrose.TexttestFixtureKt"
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
