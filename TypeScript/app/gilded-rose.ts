@@ -6,21 +6,13 @@ export class Item {
   constructor(name, sellIn, quality) {
     this.name = name;
     this.sellIn = sellIn;
+
     this.quality = quality;
   }
 }
 
-export class TypedItem extends Item {
-  type: string;
-
-  constructor(name, sellIn, quality, type) {
-    super(name, sellIn, quality);
-    this.type = type;
-  }
-}
-
 export class GildedRose {
-  items: Array<TypedItem>;
+  items: Array<Item>;
 
   constructor(items = []) {
     this.items = items;
@@ -28,20 +20,16 @@ export class GildedRose {
 
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].type != 'cheese' && this.items[i].type != 'ticket') {
+      if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
         if (this.items[i].quality > 0) {
-          if (this.items[i].type != 'sulfuras') {
-            if (this.items[i].type === 'conjured') {
-              this.items[i].quality = this.items[i].quality - 2
-            } else {
-              this.items[i].quality = this.items[i].quality - 1
-            }
+          if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
+            this.items[i].quality = this.items[i].quality - 1
           }
         }
       } else {
         if (this.items[i].quality < 50) {
           this.items[i].quality = this.items[i].quality + 1
-          if (this.items[i].type == 'ticket') {
+          if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
             if (this.items[i].sellIn < 11) {
               if (this.items[i].quality < 50) {
                 this.items[i].quality = this.items[i].quality + 1
@@ -55,19 +43,15 @@ export class GildedRose {
           }
         }
       }
-      if (this.items[i].type != 'sulfuras') {
+      if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
         this.items[i].sellIn = this.items[i].sellIn - 1;
       }
       if (this.items[i].sellIn < 0) {
-        if (this.items[i].type != 'cheese') {
-          if (this.items[i].type != 'ticket') {
+        if (this.items[i].name != 'Aged Brie') {
+          if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
             if (this.items[i].quality > 0) {
-              if (this.items[i].type != 'sulfuras') {
-                if (this.items[i].type === 'conjured') {
-                  this.items[i].quality = this.items[i].quality - 2
-                } else {
-                  this.items[i].quality = this.items[i].quality - 1
-                }
+              if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
+                this.items[i].quality = this.items[i].quality - 1
               }
             }
           } else {
@@ -87,11 +71,11 @@ export class GildedRose {
 
 export const production = new GildedRose(
   [
-    new TypedItem('+5 Dexterity Vest', 10, 20, 'normal'),
-    new TypedItem('Aged Brie', 2, 0, 'cheese'),
-    new TypedItem('Elixir of the Mongoose', 5, 7, 'normal'),
-    new TypedItem('Sulfuras, Hand of Ragnaros', 0, 80, 'sulfuras'),
-    new TypedItem('Backstage passes to a TAFKAL80ETC concert', 15, 20, 'ticket'),
-    new TypedItem('Conjured Mana Cake', 3, 6, 'conjured'),
+    new Item('+5 Dexterity Vest', 10, 20),
+    new Item('Aged Brie', 2, 0),
+    new Item('Elixir of the Mongoose', 5, 7),
+    new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+    new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20),
+    new Item('Conjured Mana Cake', 3, 6),
   ]
 );
