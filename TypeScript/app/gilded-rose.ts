@@ -12,9 +12,9 @@ export class Item {
 }
 
 export class GildedRose {
-  items: Array<Item>;
+  items: Item[] = [];
 
-  constructor(items = []) {
+  constructor(items: Item[] = []) {
     this.items = items;
   }
 
